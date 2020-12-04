@@ -1,0 +1,28 @@
+---
+- name: Make nginx config directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+  loop:
+    - "{{ nginx_config_path }}"
+    - "{{ nginx_certs_path }}"
+
+- name: Create default configuration
+  template:
+    src: nginx/default.conf.j2
+    dest: "{{ nginx_default_config_path }}"
+
+- name: Install Nginx image
+  docker_container:
+    name: nginx
+    image: nginx:1.19.3
+    state: started
+    restart: yes
+    exposed_ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+    volumes:
+      - "{{ nginx_config_path }}:{{ nginx_config_volume_path }}:ro"
+      - "{{ nginx_certs_path }}:{{ nginx_certs_volume_path }}:ro"
+      - "{{ nginx_web_root_path }}:{{ nginx_web_root_volume_path }}:ro"

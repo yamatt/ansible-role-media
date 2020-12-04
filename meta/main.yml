@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: "Matt Copperwaite"
+  name: media
+  description: Install my media setup
+  license: AGPLv2
+  min_ansible_version: 2.6
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+  galaxy_tags: []
+  dependencies:
+    - devsec.hardening

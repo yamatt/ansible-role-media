@@ -1,0 +1,39 @@
+---
+#apt
+apt_conf_d: /etc/apt/apt.conf.d/
+
+#auditd
+audit_rules_dir: "/etc/audit/rules.d/"
+
+#certbot
+certbot_path: /mnt/config/docker/volumes/certbot
+
+certbot_config_path: "{{ certbot_path }}/config"
+certbot_config_volume_path: /etc/letsencrypt
+
+certbot_state_path: "{{ certbot_path }}/state"
+certbot_state_volume_path: /var/lib/letsencrypt
+
+# the nginx path is used as the source path
+certbot_webroot_volume_path: /var/www
+
+nginx_certs_config_path: "{{ nginx_config_path }}/certs.conf"
+
+# docker
+docker_config_file_path: /etc/docker/daemon.json
+docker_config:
+  data-root: /mnt/config/docker/state
+
+# nginx
+nginx_path: /mnt/config/docker/volumes/nginx
+
+nginx_config_path: "{{ nginx_path }}/config"
+nginx_config_volume_path: /etc/nginx/conf.d
+
+nginx_certs_path: "{{ nginx_path }}/certs"
+nginx_certs_volume_path: /etc/nginx/ssl/
+
+nginx_default_config_path: "{{ nginx_config_path }}/default.conf"
+
+nginx_web_root_path: "{{ nginx_path }}/webroot"
+nginx_web_root_volume_path: "/var/www"

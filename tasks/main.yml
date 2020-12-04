@@ -1,0 +1,17 @@
+---
+include_tasks: apt.yml
+include_tasks: disks.yml
+include_tasks: auditd.yml
+include_tasks: apparmor.yml
+# disabled while spiking because it's slow to run
+#include_role: devsec.hardening.os_hardening
+include_tasks: timesync.yml
+include_tasks: cagent.yml
+include_tasks: firewall/main.yml
+
+# lets see how far this gets
+#include_tasks: docker.yml
+#include_tasks: nginx.yml
+#include_tasks: certbot.yml
+#include_tasks: jellyfin.yml
+#include_tasks: nextcloud.yml

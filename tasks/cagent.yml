@@ -1,0 +1,37 @@
+---
+- name: Add cloudradar repository
+  apt_repository:
+    repo: deb https://repo.cloudradar.io all utils
+    state: present
+    filename: cloudradar
+
+- name: Create temporary file to place cloudradar respository GPG key
+  tempfile:
+    state: file
+  register: tempory_key
+
+- name: Copy over cloudradar respository GPG key
+  copy:
+    src: cagent.gpg
+    dest: "{{ tempory_key.path }}"
+
+- name: Add cloudradar respository GPG key
+  apt_key:
+    file: tempory_key.path
+    state: present
+
+- name: Install cagent
+  apt:
+    name: cagent
+    state: present
+    update_cache: yes
+
+- name: Ensure config directories exist
+  file:
+    path: "{{ cagent_config_directory }}"
+    state: directory
+
+- name: Template a file to /etc/file.conf
+  template:
+    src: cagent/cagent.conf.j2
+    dest: /etc/cagent/cagent.conf

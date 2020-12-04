@@ -1,0 +1,13 @@
+---
+- name : Format data disk if not already
+  filesystem:
+    fstype: xfs
+    dev: "/dev/sdb"
+
+- name: Update fstab and mount the disk
+  mount:
+    name: "/mnt"
+    src: "/dev/sdb"
+    opts: noatime
+    fstype: xfs
+    state: mounted

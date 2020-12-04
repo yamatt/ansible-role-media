@@ -1,0 +1,133 @@
+pid = "/tmp/cagent.pid" # pid file location
+
+# Logging
+log = "{{ cagent_log_path }}" # log file location
+log_level = "{{ cagent_log_level }}" # "debug", "info", "error" verbose level; can be overriden with -v flag
+
+# Hub
+hub_url = "{{ cagent_hub_url }}"
+hub_user = "{{ cagent_hub_user }}"
+hub_password = "{{ cagent_hub_password }}"
+hub_proxy = "" # HTTP proxy to use with HUB
+hub_proxy_user = "" # requires hub_proxy to be set
+hub_proxy_password = "" # requires hub_proxy_user to be set
+hub_request_timeout = 10
+
+# operation_mode, possible values:
+# "full": perform all checks unless disabled individually through other config option. Default.
+# "minimal": perform just the checks for CPU utilization, CPU Load, Memory Usage, and Disk fill levels.
+# "heartbeat": Just send the heartbeat according to the heartbeat interval.
+# Applies only to io_mode = http, ignored on the command line.
+operation_mode = "full"
+# interval to push metrics to the HUB, will be ignored if the mode is set to "heartbeat"
+interval = 60.0
+# send a heartbeat without metrics to the Hub every X seconds
+heartbeat = 15.0
+
+# CPU
+cpu_load_data_gathering_mode = ['avg1','avg5','avg15'] # default ['avg1']
+cpu_utilisation_gathering_mode = ['avg1','avg5','avg15'] # default ['avg1']
+cpu_utilisation_types = ['user','system','nice','idle','iowait','interrupt','softirq','steal'] # default ['user','system','idle','iowait']
+
+# FS
+fs_type_include = ['ext4','xfs','jfs'] # default ['ext3','ext4','xfs','jfs','ntfs','btrfs','hfs','apfs','fat32','smbfs','nfs']
+fs_path_exclude = ['/mnt/*','h:'] # default []
+fs_metrics = ['free_B','free_percent','used_B','used_percent','total_B','inodes_total','inodes_free','inodes_used','inodes_used_percent','read_B_per_s','write_B_per_s','read_ops_per_s','write_ops_per_s']
+fs_identify_mountpoints_by_device = true
+
+# Network
+net_interface_exclude = ['utun', 'awdl']
+net_interface_exclude_regex = ["en[1-9]"] # default ["^vnet(.*)$", "^virbr(.*)$", "^vmnet(.*)$", "^vEthernet(.*)$"], default on windows: ["Pseudo-Interface"]
+net_interface_exclude_disconnected = true # default true
+net_interface_exclude_loopback = true # default true
+net_metrics = ['in_B_per_s', 'out_B_per_s', 'errors_per_s','dropped_per_s'] # default ['in_B_per_s','out_B_per_s','total_out_B_per_s','total_in_B_per_s']
+
+# If the value is not specified, cagent will try to query the maximum speed of the network cards to calculate the bandwidth usage (default)
+# Depending on the network card type this is not always reliable.
+# Some virtual network cards, for example, report a maximum speed lower than the real speed.
+# You can set a fixed value by using <number of Bytes per second> + <K, M or G as a quantifier>.
+# Examples: "125M" (equals 1 GigaBit), "12.5M" (equals 100 MegaBits), "12.5G" (equals 100 GigaBit)
+net_interface_max_speed = ""
+
+# System
+system_fields = ['uname','os_kernel','os_family','os_arch','cpu_model','fqdn','memory_total_B'] # default ['uname','os_kernel','os_family','os_arch','cpu_model','fqdn','memory_total_B']
+
+hardware_inventory = true
+discover_autostarting_services_only = true
+temperature_monitoring = true # default true
+
+# Software raid monitoring
+# Auto-detect software raids by reading /proc/mdstat and monitor them
+# default true
+software_raid_monitoring = true
+
+# default
+[cpu_utilisation_analysis]
+  threshold = 10.0 # target value to start the analysis
+  function = "lt" # threshold compare function, possible values: 'lt', 'lte', 'gt', 'gte'
+  metric = "idle" # possible values: 'user','system','idle','iowait'
+  gathering_mode = "avg1" # should be one of values of cpu_utilisation_gathering_mode
+  report_processes = 5 # number of processes to return
+  trailing_process_analysis_minutes = 5 # how much time analysis will continue to perform after the CPU utilisation returns to the normal value
+
+# Enable monitoring of hardware health for MegaRaids
+# reported by the storcli command-line tool
+# Refer to https://docs.cloudradar.io/cagent/modules#storcli
+# On Linux make sure a sudo rule exists. The storcli command is always executed via sudo. Example sudo rule:
+# cagent ALL= NOPASSWD: /opt/MegaRAID/storcli/storcli64 /call show all J
+[storcli]
+  # Enable on Windows:
+  #   binary = 'C:\Program Files\storcli\storcli64.exe'
+  # Enable on Linux:
+  binary = '/opt/storcli/sbin/storcli64'
+
+# Settings for the jobmon wrapper for the  monitoring of jobs
+[jobmon]
+  # Path to spool dir
+  #   spool_dir = 'C:\ProgramData\cagent\jobmon' # Windows
+  #   spool_dir = '/usr/local/var/lib/cagent/jobmon' # MacOS
+  spool_dir = '/var/lib/cagent/jobmon' # Linux
+  record_stderr = true # Record the last 4 KB of the error output. Default: true
+  record_stdout = false # Record the last 4 KB of the standard output. Default: false
+  severity = "alert" # Failed jobs will be processed as alerts. Possible values alert, warning or none. Default: alert
+
+# Monitor the available updates using the operating system updates service
+# Uses apt-get, apt-check or yum, Requires sudo rules. DEB and RPM packages install them automatically.
+# On Windows, it requires windows updates to be switched on, ignored if windows updates are switched off
+[system_updates_checks]
+  enabled = true # Set 'false' to disable checking available updates
+  fetch_timeout = 30 # Maximum time the package manager is allowed to spend fetching available updates. Not supported on Windows
+  check_interval = 14400 # Check for available updates every N seconds. Minimum is 300 seconds
+
+# Monitor the basic performance metrics of a MySQL or MariaDB database
+# ** EXPERIMENTAL                          **
+# ** Do not use in production environments **
+[mysql_monitoring]
+  enabled = false
+  connect = "127.0.0.1:3306" # Use 127.0.0.1 or the path to the mysql.socket, connecting to remote databases is not supported
+  # Create a user with minimal rights
+  # mysql > GRANT USAGE ON *.* TO cagent@localhost IDENTIFIED BY 'confidential';
+  user = "cagent"
+  password = "confidential"
+  connect_timeout = 1.0
+
+# Cagent monitors all running processes and reports them for further processing to the Hub.
+# On heavy loaded systems or if you don't need process monitoring at all,
+# you can change the following settings.
+[process_monitoring]
+  enabled = true
+  # Monitor kernel tasks identified by process group 0
+  # Ignored on Windows
+  enable_kerneltask_monitoring = true
+  # The process list is sorted by PID descending. Only the top N processes are monitored.
+  max_number_monitored_processes = 500
+
+# Control how cagent installs self-updates. Windows-only
+[self_update]
+  	enabled = true         # Set to false to disable self-updates
+  	check_interval = 21600 # Cagent will check for new versions every N seconds
+
+# Cagent monitors all running docker containers and reports them for further processing to the Hub.
+# You can change the following settings.
+[docker_monitoring]
+    enabled = true

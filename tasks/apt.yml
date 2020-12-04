@@ -1,0 +1,20 @@
+---
+- name: ensure everything is up to date and patched
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install aptitude
+  apt:
+    name: aptitude
+    state: present
+
+- name: Install automatic updates
+  apt:
+    name: unattended-upgrades
+    state: present
+
+- name: Enforce automatic updates
+  copy:
+    src: 20auto-upgrades
+    dest: "{{ apt_conf_d }}"

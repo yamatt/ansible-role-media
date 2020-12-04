@@ -1,0 +1,27 @@
+---
+
+- name: setup default outgoing rule
+  ufw:
+    rule: allow
+    direction: out
+
+- name: setup default outgoing rule
+  ufw:
+    rule: allow
+    direction: out
+
+- name: Limit number of SSH connections
+  ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+
+- name: Allow SSH access
+  ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: set default incoming rule
+  ufw:
+    rule: deny
+    direction: in
