@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install -r requirements.txt
+          python3 -m pip install -r requirementsDev.txt
       - name: Run molecule
         run: |
           molecule dependency
@@ -39,7 +39,7 @@ jobs:
       - name: Install python3
         run: ${{ matrix.docker-instances.bootstrap }}
       - name: Install ansible
-        run: python3 -m pip install -r requirements.txt
+        run: python3 -m pip install -r requirementsDev.txt
       - name: Copy role to somewhere it can be found
         run: cp -r ../ansible-role-media ~/media
       - name: Run playbook
