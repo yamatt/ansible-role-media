@@ -39,6 +39,8 @@ jobs:
       - name: Install ansible
         run: python3 -m pip install -r requirementsDev.txt
       - name: Copy role to somewhere it can be found
-        run: cp -r ../ansible-role-media ~/media
+        run: |
+          mkdir ~/.ansible/plugins/modules
+          cp -r ../ansible-role-media ~/.ansible/plugins/modules/media
       - name: Run playbook
-        run: ansible --connection=local --inventory 127.0.0.1, --module-path .. --module-name ansible-role-media localhost
+        run: ansible --connection=local --inventory 127.0.0.1, --module-name media localhost
