@@ -16,5 +16,5 @@
 
 - name: Enforce automatic updates
   copy:
-    src: 20auto-upgrades
+    src: apt/20auto-upgrades
     dest: "{{ apt_conf_d }}"
