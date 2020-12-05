@@ -41,4 +41,4 @@ jobs:
       - name: Copy role to somewhere it can be found
         run: cp -r ../ansible-role-media ~/media
       - name: Run playbook
-        run: ansible --connection=local --inventory 127.0.0.1, -M ~ -m media localhost
+        run: ansible --connection=local --inventory 127.0.0.1, --module-path .. --module-name ansible-role-media localhost
