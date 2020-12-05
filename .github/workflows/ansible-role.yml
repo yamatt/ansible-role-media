@@ -32,6 +32,8 @@ jobs:
               apt update
               apt install -y python3 python3-pip
     container: ${{ matrix.docker-instances.image }}
+    env:
+      ANSIBLE_ROLES_PATH: ~/
     steps:
       - uses: actions/checkout@v2
       - name: Install python3
@@ -39,8 +41,6 @@ jobs:
       - name: Install ansible
         run: python3 -m pip install -r requirementsDev.txt
       - name: Copy role to somewhere it can be found
-        run: |
-          mkdir ~/.ansible/plugins/modules
-          cp -r ../ansible-role-media ~/.ansible/plugins/modules/media
+        run: cp -r ../ansible-role-media ~/media
       - name: Run playbook
-        run: ansible --connection=local --inventory 127.0.0.1, --module-name media localhost
+        run: ansible-playbook -i tests/inventory tests/playbook.yml --extra-vars "@tests/extra-vars.yml"
