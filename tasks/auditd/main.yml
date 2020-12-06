@@ -10,4 +10,4 @@
     state: started
     enabled: yes
 
-- include: auditd/audits.yaml
+- include_tasks: audits.yaml
