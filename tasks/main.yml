@@ -1,6 +1,5 @@
 ---
 - include_tasks: apt.yml
-  when: not testing
 - include_tasks: disks.yml
   when: not testing
 - include_tasks: auditd/main.yml
