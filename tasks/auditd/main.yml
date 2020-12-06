@@ -10,4 +10,4 @@
     state: started
     enabled: yes
 
-- include: auditd.yaml
+- include: audits.yaml
