@@ -14,17 +14,17 @@
 - name: Create /tmp rules
   copy:
     src: tmp.rules
-    dest: "{{ rules_dir }}"
+    dest: "{{ audit_rules_dir }}"
   notify: rule merge
 
 - name: create admin home rules
   copy:
     src: admin-home.rules
-    dest: "{{ rules_dir }}"
+    dest: "{{ audit_rules_dir }}"
   notify: rule merge
 
 - name: create fonduio rules
   template:
     src: fonduio.rules
-    dest: "{{ rules_dir }}"
+    dest: "{{ audit_rules_dir }}"
   notify: rule merge
