@@ -13,13 +13,13 @@
 # NOTE: Is the audit dir (/var/log/audit/audit.log) audited?
 - name: Create /tmp rules
   copy:
-    src: tmp.rules
+    src: audit/tmp.rules
     dest: "{{ audit_rules_dir }}"
   notify: rule merge
 
 - name: create admin home rules
   copy:
-    src: admin-home.rules
+    src: audit/admin-home.rules
     dest: "{{ audit_rules_dir }}"
   notify: rule merge
 
