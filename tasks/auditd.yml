@@ -22,9 +22,3 @@
     src: audit/admin-home.rules
     dest: "{{ audit_rules_dir }}"
   notify: rule merge
-
-- name: create fonduio rules
-  template:
-    src: audit/fonduio.rules
-    dest: "{{ audit_rules_dir }}"
-  notify: rule merge
