@@ -20,12 +20,6 @@
     state: present
     filename: cloudradar
 
-- name: Install cagent
-  apt:
-    name: cagent
-    state: present
-    update_cache: yes
-
 - name: Ensure config directories exist
   file:
     path: "{{ cagent_config_directory }}"
@@ -34,4 +28,10 @@
 - name: Template a file to /etc/file.conf
   template:
     src: cagent/cagent.conf.j2
-    dest: /etc/cagent/cagent.conf
+    dest: "{{ cagent_config_directory }}/cagent.conf"
+
+- name: Install cagent
+  apt:
+    name: cagent
+    state: present
+    update_cache: yes
