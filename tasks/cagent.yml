@@ -11,7 +11,7 @@
 
 - name: Add cloudradar respository GPG key
   apt_key:
-    file: tempory_key.path
+    file: "{{ tempory_key.path }}"
     state: present
 
 - name: Add cloudradar repository
