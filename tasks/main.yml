@@ -10,6 +10,7 @@
   when: not testing
 - include_tasks: cagent.yml
 - include_tasks: firewall.yml
+  when: not testing
 
 # lets see how far this gets
 #- include_tasks: docker.yml
