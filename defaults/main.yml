@@ -5,6 +5,12 @@ apt_conf_d: /etc/apt/apt.conf.d/
 #auditd
 audit_rules_dir: "/etc/audit/rules.d/"
 
+# cagent
+cagent_release_version: "1.8.0"
+cagent_log_path: "/var/log/cagent/cagent.log"
+cagent_log_level: "info"
+
+
 #certbot
 certbot_path: /mnt/config/docker/volumes/certbot
 
