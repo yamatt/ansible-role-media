@@ -1,2 +1,8 @@
 ---
 testing: true
+
+# cagent
+
+cagent_hub_url: "https://example.hub.com"
+cagent_hub_user: "test-hub-user"
+cagent_hub_password: "test-hub-password"
