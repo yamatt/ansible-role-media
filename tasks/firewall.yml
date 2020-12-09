@@ -4,8 +4,6 @@
     name: ufw
     state: present
 
-- include: ports.yaml
-
 # UFW has it's own service management layer. So no service module needed
 - name: Start the ufw service
   ufw:
