@@ -1,0 +1,6 @@
+---
+# cagent
+cagent_release_url: "https://github.com/cloudradar-monitoring/cagent/releases/download/{{ cagent_release_version }}/cagent_{{ cagent_release_version }}_Linux_x86_64.tar.gz"
+cagent_config_directory: /etc/cagent
+cagent_config_path: "{{ cagent_config_directory }}/cagent.conf"
+caengt_other_os_destination_directory: /opt/cagent
