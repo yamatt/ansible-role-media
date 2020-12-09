@@ -25,7 +25,7 @@
     path: "{{ cagent_config_directory }}"
     state: directory
 
-- name: Template a file to /etc/file.conf
+- name: Template config file
   template:
     src: cagent/cagent.conf.j2
     dest: "{{ cagent_config_directory }}/cagent.conf"
