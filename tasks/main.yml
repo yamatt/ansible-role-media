@@ -12,9 +12,8 @@
 - include_tasks: firewall.yml
   when: not testing
 
-# lets see how far this gets
-#- include_tasks: docker.yml
-#- include_tasks: nginx.yml
+- include_tasks: docker.yml
+- include_tasks: nginx.yml
 #- include_tasks: certbot.yml
 #- include_tasks: jellyfin.yml
 #- include_tasks: nextcloud.yml
