@@ -23,15 +23,6 @@ jobs:
           molecule syntax
   test:
     runs-on: ubuntu-20.04
-    strategy:
-      max-parallel: 2
-      matrix:
-        docker-instances:
-          - image: ubuntu:focal-20200925
-            bootstrap: |
-              apt update
-              apt install -y python3 python3-pip
-    container: ${{ matrix.docker-instances.image }}
     env:
       ANSIBLE_ROLES_PATH: ~/
     steps:

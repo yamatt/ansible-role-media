@@ -7,10 +7,8 @@
 # disabled while spiking because it's slow to run
 #include_role: devsec.hardening.os_hardening
 - include_tasks: timesync.yml
-  when: not testing
 - include_tasks: cagent.yml
 - include_tasks: firewall.yml
-  when: not testing
 
 - include_tasks: docker.yml
 - include_tasks: nginx.yml
