@@ -5,23 +5,24 @@ on:
 
 jobs:
   lint:
+    name: Lint the Ansible
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python 3.7
+      - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:
-          python-version: '3.7'
+          python-version: '3.8'
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirementsDev.txt
       - name: Run molecule
         run: |
-          molecule dependency
           molecule lint
           molecule syntax
   test:
+    name: Run Tests with Molecule
     runs-on: ubuntu-20.04
     env:
       ANSIBLE_ROLES_PATH: ~/
@@ -37,3 +38,17 @@ jobs:
         run: cp -r ../ansible-role-media ~/media
       - name: Run playbook
         run: ansible-playbook -i tests/inventory tests/playbook.yml --extra-vars "@tests/extra-vars.yml"
+  trigger:
+    name: If Lint and Test is successful trigger update on infrastructure
+    needs:
+      - lint
+      - test
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Trigger update to instance
+        uses: mvasigh/dispatch-action@main
+        with:
+          token: ${{ secrets.TF_MEDIA_PERSONAL_ACCESS_TOKEN }}
+          repo: tf-media
+          owner: yamatt
+          event_type: update
