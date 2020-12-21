@@ -3,4 +3,5 @@
   service:
     name: systemd-timesyncd
     state: started
+    masked: no
     enabled: yes
