@@ -37,7 +37,7 @@
 
 - name: Create docker data directory
   file:
-    path: "{{ docker_config.data-root }}"
+    path: "{{ docker_config['data-root'] }}"
     state: directory
 
 - name: Write out config file
