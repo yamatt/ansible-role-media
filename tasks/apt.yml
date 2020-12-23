@@ -4,15 +4,13 @@
     update_cache: yes
     upgrade: yes
 
-- name: Install aptitude
+- name: Install common packages
   apt:
-    name: aptitude
+    name: "{{ item }}"
     state: present
-
-- name: Install automatic updates
-  apt:
-    name: unattended-upgrades
-    state: present
+  loop:
+    - aptitude
+    - unattended-upgrades
 
 - name: Enforce automatic updates
   copy:
