@@ -1,7 +1,6 @@
 ---
 - include_tasks: apt.yml
 - include_tasks: disks.yml
-  when: not testing
 - include_tasks: auditd.yml
 - include_tasks: apparmor.yml
 # disabled while spiking because it's slow to run

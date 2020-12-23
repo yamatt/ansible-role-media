@@ -1,6 +1,9 @@
 ---
 testing: true
 
+# disks
+data_disk_device_path: /testdisk
+
 # cagent
 
 cagent_hub_url: "https://example.hub.com"
