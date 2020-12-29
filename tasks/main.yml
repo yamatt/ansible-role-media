@@ -7,7 +7,7 @@
 #include_role: devsec.hardening.os_hardening
 - include_tasks: timesync.yml
   when: not testing | default('no')
-- include_tasks: cagent.yml
+#- include_tasks: cagent.yml
 - include_tasks: firewall.yml
 
 - include_tasks: docker.yml
