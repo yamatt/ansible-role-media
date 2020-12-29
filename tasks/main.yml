@@ -12,7 +12,7 @@
 
 - include_tasks: docker.yml
 - include_tasks: nginx.yml
-- include_tasks: certbot.yml
-  when: not testing | default('no')
+#- include_tasks: certbot.yml
+#  when: not testing | default('no')
 #- include_tasks: jellyfin.yml
 #- include_tasks: nextcloud.yml
