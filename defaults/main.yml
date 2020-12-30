@@ -32,7 +32,7 @@ certbot_webroot_volume_path: /var/www
 nginx_certs_config_path: "{{ nginx_config_path }}/certs.conf"
 
 # docker
-docker_config_directory_path: /etc/docker/
+docker_config_directory_path: /etc/docker
 docker_config_file_path: "{{ docker_config_directory_path}}/daemon.json"
 docker_config:
   data-root: /mnt/config/docker/state
