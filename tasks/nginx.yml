@@ -17,6 +17,7 @@
   docker_container:
     name: nginx
     image: nginx:1.19.3
+    container_default_behavior: compatability
     state: started
     restart: yes
     published_ports:
