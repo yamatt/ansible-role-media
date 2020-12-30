@@ -33,4 +33,5 @@
 - name: Allow http access
   ufw:
     rule: allow
-    name: http
+    port: '80'
+    proto: tcp
