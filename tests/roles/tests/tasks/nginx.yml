@@ -5,6 +5,4 @@
   register: tempory_file
 
 - name: Check nginx is running
-  get_url:
-    url: http://localhost
-    dest: "{{ tempory_file.path }}"
+  command: curl --output /dev/null --silent --head --fail http://localhost
