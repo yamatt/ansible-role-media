@@ -5,11 +5,20 @@
   args:
     warn: no # recommends to use get_url when get_url fails in this case
 
+- name: Create base directory
+  file:
+    path: "{{ nginx_check_directory_path }}"
+    state: directory
+
 - name: Create file to check
   file:
-    path: "{{ nginx_web_root_path }}/{{ nginx_check_file_name }}"
+    path: "{{ nginx_check_file_path }}"
     state: touch
+  notify:
+    - Restart Nginx
 
+- name: Force Nginx restart
+  meta: flush_handlers
 
 - name: Create temporary file to place nginx test output
   tempfile:
@@ -18,5 +27,5 @@
 
 - name: Check file exists
   get_url:
-    url: "http://localhost/.well-known/{{ nginx_check_file_name }}"
+    url: "http://localhost/{{ nginx_check_file_path }}"
     dest: "{{ tempory_file.path }}"
