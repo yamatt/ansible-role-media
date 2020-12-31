@@ -2,6 +2,8 @@
 
 - name: Check nginx is running
   command: curl --output /dev/null --silent --head --fail http://localhost
+  args:
+    warn: no # recommends to use get_url when get_url fails in this case
 
 - name: Create file to check
   file:
