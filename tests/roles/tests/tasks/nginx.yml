@@ -38,3 +38,7 @@
 
     - debug:
         var: nginx_out.stdout_lines
+
+    - name: re-raise the error
+      fail:
+        msg: "{{ ansible_failed_result }}"
