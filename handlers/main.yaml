@@ -19,3 +19,4 @@
     name: nginx
     state: started
     restart: yes
+    container_default_behavior: compatibility
