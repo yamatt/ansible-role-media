@@ -1,8 +1,20 @@
 ---
+
+- name: Check nginx is running
+  command: curl --output /dev/null --silent --head --fail http://localhost
+
+- name: Create file to check
+  file:
+    path: "{{ nginx_web_root_path }}/{{ nginx_check_file_name }}"
+    state: touch
+
+
 - name: Create temporary file to place nginx test output
   tempfile:
     state: file
   register: tempory_file
 
-- name: Check nginx is running
-  command: curl --output /dev/null --silent --head --fail http://localhost
+- name: Check file exists
+  get_url:
+    url: "http://localhost/.well-known/{{ nginx_check_file_name }}"
+    dest: "{{ tempory_file.path }}"
