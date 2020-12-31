@@ -15,11 +15,13 @@
     file:
       path: "{{ nginx_check_file_path }}"
       state: touch
-    notify:
-      - Restart Nginx
 
-  - name: Force Nginx restart
-    meta: flush_handlers
+- name: Restart Nginx
+  docker_container:
+    name: nginx
+    state: started
+    restart: yes
+    container_default_behavior: compatibility
 
   - name: Create temporary file to place nginx test output
     tempfile:
