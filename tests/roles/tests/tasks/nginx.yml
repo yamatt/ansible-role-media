@@ -8,7 +8,7 @@
 
   - name: Create base directory
     file:
-      path: "{{ nginx_check_directory_path }}"
+      path: "{{ nginx_check_full_directory_path }}"
       state: directory
 
   - name: Create file to check
