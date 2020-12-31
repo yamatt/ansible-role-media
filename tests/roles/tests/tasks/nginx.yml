@@ -30,7 +30,7 @@
 
   - name: Check file exists
     get_url:
-      url: "http://localhost/{{ nginx_check_file_path }}"
+      url: "http://localhost/{{ nginx_check_file_url_path }}"
       dest: "{{ tempory_file.path }}"
   rescue:
     - command: docker logs nginx
