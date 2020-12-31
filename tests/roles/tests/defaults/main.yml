@@ -1,4 +1,4 @@
 ---
 nginx_check_directory_path: .well-known
 nginx_check_file_name: example.txt
-nginx_check_file_path: "{{ nginx_check_directory_path }}/{{ nginx_check_file_name }}"
+nginx_check_file_path: "{{ nginx_web_root_path }}/{{ nginx_check_directory_path }}/{{ nginx_check_file_name }}"
