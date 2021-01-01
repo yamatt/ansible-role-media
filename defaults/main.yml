@@ -26,7 +26,7 @@ docker_config:
   data-root: "{{ data_disk_mount_point }}/config/docker/state"
 
 # nginx
-nginx_path: "{{ data_disk_mount_point }}/config/docker/volumes/nginx"
+nginx_path: "{{ data_disk_mount_point }}/config/nginx/volumes"
 
 nginx_config_path: "{{ nginx_path }}/config"
 nginx_config_volume_path: /etc/nginx/conf.d
