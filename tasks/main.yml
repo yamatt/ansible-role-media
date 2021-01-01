@@ -6,13 +6,13 @@
 # disabled while spiking because it's slow to run
 #include_role: devsec.hardening.os_hardening
 - include_tasks: timesync.yml
-  when: not testing | default('no')
+  when: "not {{ testing | default('no') | bool }}"
 #- include_tasks: cagent.yml
 - include_tasks: firewall.yml
 
 - include_tasks: docker.yml
 - include_tasks: nginx.yml
 - include_tasks: certbot.yml
-  when: not testing | default('no')
+  when: "not {{ testing | default('no') | bool }}"
 #- include_tasks: jellyfin.yml
 #- include_tasks: nextcloud.yml
