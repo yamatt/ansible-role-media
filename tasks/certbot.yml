@@ -8,13 +8,16 @@
     - "{{ certbot_config_path }}"
     - "{{ certbot_state_path }}"
 
+- name: Generate DH params
+  command: openssl dhparam -out "{{ certbot_config_path }}/dhparam.pem" 4096
+
 - name: Run certbot image
   docker_container:
     name: certbot
     image: certbot/certbot:v1.9.0
     command: "certonly --non-interactive --agree-tos --email {{ email }} --webroot -w /var/www -d {{ domain }}"
     volumes:
-      - "{{ certbot_config_path }}:{{ certbot_config_volume_path }}"
+      - "{{ nginx_certs_path }}:{{ certbot_certs_volume_path }}"
       - "{{ certbot_state_path }}:{{ certbot_state_volume_path }}"
       - "{{ nginx_web_root_path }}:{{ certbot_webroot_volume_path }}:rw"
 
