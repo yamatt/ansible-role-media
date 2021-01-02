@@ -40,12 +40,12 @@ nginx_web_root_path: "{{ nginx_path }}/webroot"
 nginx_web_root_volume_path: "/var/www"
 
 # certbot
-certbot_path: "{{ data_disk_mount_point }}/config/docker/volumes/certbot"
+certbot_path: "{{ data_disk_mount_point }}/config/certbot"
 
-certbot_config_path: "{{ certbot_path }}/config"
+certbot_config_path: "{{ certbot_path }}/volumes/config"
 certbot_config_volume_path: /etc/letsencrypt
 
-certbot_state_path: "{{ certbot_path }}/state"
+certbot_state_path: "{{ certbot_path }}/volumes/state"
 certbot_state_volume_path: /var/lib/letsencrypt
 
 # the nginx path is used as the source path
