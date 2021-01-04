@@ -40,17 +40,17 @@ jobs:
         run: cp -r ../ansible-role-media ~/media
       - name: Run playbook
         run: ansible-playbook -i tests/inventory tests/playbook.yml --extra-vars "@tests/extra-vars.yml"
-#  trigger:
-#    name: If Lint and Test is successful trigger update on infrastructure
-#    needs:
-#      - lint
-#      - test
-#    runs-on: ubuntu-20.04
-#    steps:
-#      - name: Trigger update to instance
-#        uses: mvasigh/dispatch-action@main
-#        with:
-#          token: ${{ secrets.TF_MEDIA_PERSONAL_ACCESS_TOKEN }}
-#          repo: tf-media
-#          owner: yamatt
-#          event_type: update
+  trigger:
+    name: If Lint and Test is successful trigger update on infrastructure
+    needs:
+      - lint
+      - test
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Trigger update to instance
+        uses: mvasigh/dispatch-action@main
+        with:
+          token: ${{ secrets.TF_MEDIA_PERSONAL_ACCESS_TOKEN }}
+          repo: tf-media
+          owner: yamatt
+          event_type: update
