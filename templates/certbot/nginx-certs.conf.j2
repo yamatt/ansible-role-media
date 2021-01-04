@@ -1,8 +1,8 @@
 server {
     listen 443 ssl http2;
-    server_name {{ domain }}
+    server_name {{ domain }};
 
-    ssl_certificate /etc/nginx/ssl/live/{{ domain }}/fullchain.pem;;
+    ssl_certificate /etc/nginx/ssl/live/{{ domain }}/fullchain.pem;
     ssl_certificate_key /etc/nginx/ssl/live/{{ domain }}/privkey.pem;
     ssl_session_timeout 1d;
     ssl_session_cache shared:MySSL:10m;
@@ -21,5 +21,5 @@ server {
     # replace with the IP address of your resolver
     resolver 1.1.1.1;
 
-    include {{ nginx_config_volume_path }}/webgateway/*.conf
+    include {{ nginx_config_volume_path }}/webgateway/*.conf;
 }
