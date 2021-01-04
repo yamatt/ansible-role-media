@@ -5,7 +5,6 @@
     state: directory
     recurse: yes
   loop:
-    - "{{ certbot_config_path }}"
     - "{{ certbot_state_path }}"
 
 - name: Generate DH params

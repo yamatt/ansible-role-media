@@ -29,7 +29,6 @@
       - "{{ nginx_web_root_path }}:{{ nginx_web_root_volume_path }}:ro"
 
 
-
 - name: Allow http access
   ufw:
     rule: allow
