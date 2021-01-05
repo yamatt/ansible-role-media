@@ -1,3 +1,4 @@
 location /jellyfin {
+    rewrite /jellyfin/(.*) /$1  break;
     proxy_pass http://jellyfin:8096;
 }
