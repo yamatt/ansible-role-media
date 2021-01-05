@@ -14,5 +14,5 @@
 - include_tasks: nginx.yml
 - include_tasks: certbot.yml
   when: "not {{ testing | default('no') | bool }}"
-#- include_tasks: jellyfin.yml
+- include_tasks: jellyfin.yml
 #- include_tasks: nextcloud.yml

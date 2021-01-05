@@ -31,6 +31,8 @@ nginx_path: "{{ data_disk_mount_point }}/config/nginx/volumes"
 nginx_config_path: "{{ nginx_path }}/config"
 nginx_config_volume_path: /etc/nginx/conf.d
 
+nginx_config_webgateway_path: "{{ nginx_config_path }}/webgateway"
+
 nginx_certs_path: "{{ nginx_path }}/certs"
 nginx_certs_volume_path: /etc/nginx/ssl/
 
@@ -38,6 +40,8 @@ nginx_default_config_path: "{{ nginx_config_path }}/default.conf"
 
 nginx_web_root_path: "{{ nginx_path }}/webroot"
 nginx_web_root_volume_path: "/var/www"
+
+webgateway_network_name: webgateway
 
 # certbot
 certbot_path: "{{ data_disk_mount_point }}/config/certbot/volumes"
@@ -49,3 +53,11 @@ certbot_state_volume_path: /var/lib/letsencrypt
 
 # the nginx path is used as the source path
 certbot_webroot_volume_path: /var/www
+# jellyfin
+jellyfin_base_path: "{{ data_disk_mount_point }}/config/docker/volumes/jellyfin"
+
+jellyfin_config_path: "{{ jellyfin_base_path }}/config"
+jellyfin_config_volume_path: "/config"
+
+jellyfin_cache_path: "{{ jellyfin_base_path }}/cache"
+jellyfin_cache_volume_path: "/cache"

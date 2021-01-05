@@ -7,6 +7,7 @@
   loop:
     - "{{ nginx_config_path }}"
     - "{{ nginx_certs_path }}"
+    - "{{ nginx_config_webgateway_path }}"
 
 - name: Create default configuration
   template:
@@ -28,9 +29,14 @@
       - "{{ nginx_certs_path }}:{{ nginx_certs_volume_path }}:ro"
       - "{{ nginx_web_root_path }}:{{ nginx_web_root_volume_path }}:ro"
 
-
 - name: Allow http access
   ufw:
     rule: allow
     port: '80'
     proto: tcp
+
+- name: Create Nginx web gateway network for other containers running webservers to serve through
+  community.general.docker_network:
+    name: "{{ webgateway_network_name }}"
+    connected:
+      - nginx

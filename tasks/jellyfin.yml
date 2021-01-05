@@ -1,0 +1,35 @@
+---
+- name: Make jellyfin config directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+  loop:
+    - "{{ jellyfin_base_path }}"
+    - "{{ jellyfin_config_path }}"
+    - "{{ jellyfin_cache_path }}"
+
+- name: Create jellyfin configuration for nginx
+  template:
+    src: nginx/jellyfin.conf.j2
+    dest: "{{ nginx_config_webgateway_path }}/jellyfin.conf"
+  notify:
+    - Restart Nginx
+
+- name: Install Jellyfin image
+  docker_container:
+    name: jellyfin
+    image: jellyfin/jellyfin:10.6.4-amd64
+    container_default_behavior: compatibility
+    state: started
+    restart: yes
+    volumes:
+      - "{{ jellyfin_config_path }}:{{ jellyfin_config_volume_path }}"
+      - "{{ jellyfin_cache_path }}:{{ jellyfin_cache_volume_path }}"
+
+- name: Connect to web gateway network to communicate with nginx
+  community.general.docker_network:
+    name: "{{ webgateway_network_name }}"
+    connected:
+      - jellyfin
+    appends: yes
