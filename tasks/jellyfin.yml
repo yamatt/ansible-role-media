@@ -7,7 +7,13 @@
   loop:
     - "{{ jellyfin_base_path }}"
     - "{{ jellyfin_config_path }}"
+    - "{{ jellyfin_config_system_path }}"
     - "{{ jellyfin_cache_path }}"
+
+- name: Copy over jellifin default config
+  copy:
+    src: jellyfin/system.xml
+    dest: "{{ jellyfin_config_system_path }}/system.xml"
 
 - name: Create jellyfin configuration for nginx
   template:

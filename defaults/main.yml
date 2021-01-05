@@ -54,10 +54,12 @@ certbot_state_volume_path: /var/lib/letsencrypt
 # the nginx path is used as the source path
 certbot_webroot_volume_path: /var/www
 # jellyfin
-jellyfin_base_path: "{{ data_disk_mount_point }}/config/docker/volumes/jellyfin"
+jellyfin_base_path: "{{ data_disk_mount_point }}/config/jellyfin/volumes"
 
 jellyfin_config_path: "{{ jellyfin_base_path }}/config"
 jellyfin_config_volume_path: "/config"
+
+jellyfin_config_system_path: "{{ jellyfin_config_path }}/config"
 
 jellyfin_cache_path: "{{ jellyfin_base_path }}/cache"
 jellyfin_cache_volume_path: "/cache"
