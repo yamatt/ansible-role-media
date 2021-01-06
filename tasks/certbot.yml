@@ -9,6 +9,8 @@
 
 - name: Generate DH params
   command: "openssl dhparam -out {{ nginx_certs_path }}/dhparam.pem 4096"
+  args:
+    creates: "{{ nginx_certs_path }}/dhparam.pem"
 
 - name: Run certbot image
   docker_container:
