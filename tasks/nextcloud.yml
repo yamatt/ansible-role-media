@@ -1,0 +1,53 @@
+---
+- name: Make nextcloud config directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+  loop:
+    - "{{ nextcloud_base_path }}"
+    - "{{ nextcloud_maria_base_path }}"
+    - "{{ nextcloud_data_path }}"
+    - "{{ nextcloud_mariadb_data_path }}"
+
+- name: Copy over mariadb config as recommended by nextcloud
+  copy:
+    src: nextcloud-mariadb/my.cnf
+    dest: "{{ nextcloud_mariadb_config_volume_path }}"
+
+- name: Create nextcloud network to access database
+  community.general.docker_network:
+    name: nextcloud
+
+- name: Install MariaDB image
+  docker_container:
+    name: nextcloud-mariadb
+    image: mariadb:10.5.8-focal
+    container_default_behavior: compatibility
+    state: started
+    restart: yes
+    networks:
+      - nextcloud
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ lookup('password', {{ nextcloud_mariadb_password_file_path }} length=20') }}"
+    volumes:
+      - "{{ nextcloud_mariadb_data_path }}:{{ nextcloud_mariadb_data_volume_path }}"
+
+- name: Install Nextcloud image
+  docker_container:
+    name: nextcloud
+    image: nextcloud:20.0.4-apache
+    container_default_behavior: compatibility
+    state: started
+    restart: yes
+    networks:
+      - nextcloud
+    volumes:
+      - "{{ nextcloud_data_path }}:{{ nextcloud_config_volume_path }}"
+
+- name: Connect to web gateway network to communicate with nginx
+  community.general.docker_network:
+    name: "{{ webgateway_network_name }}"
+    connected:
+      - nextcloud
+    appends: yes
