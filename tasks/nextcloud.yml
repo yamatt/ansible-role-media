@@ -6,7 +6,7 @@
     recurse: yes
   loop:
     - "{{ nextcloud_base_path }}"
-    - "{{ nextcloud_maria_base_path }}"
+    - "{{ nextcloud_mariadb_base_path }}"
     - "{{ nextcloud_data_path }}"
     - "{{ nextcloud_mariadb_data_path }}"
 
