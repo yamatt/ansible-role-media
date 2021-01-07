@@ -27,7 +27,7 @@
       - "{{ nginx_certs_path }}:{{ certbot_certs_volume_path }}"
       - "{{ certbot_state_path }}:{{ certbot_state_volume_path }}"
       - "{{ nginx_web_root_path }}:{{ certbot_webroot_volume_path }}:rw"
-  when: "not {{ testing | default('no') | bool }} or not {{ certs_file.stat.exist }}"
+  when: "not {{ testing | default('no') | bool }} or not {{ certs_file.stat.exists }}"
 
 - name: Renew certbot image
   docker_container:
