@@ -15,7 +15,7 @@
 
 - name: Check if certbot has been successfully run before
   stat:
-    path: "{{ nginx_certs_path }}/live/{{ domain }}/fullchain.pem";
+    path: "{{ nginx_certs_path }}/live/{{ domain }}/fullchain.pem"
   register: certs_file
 
 - name: Run certbot image
