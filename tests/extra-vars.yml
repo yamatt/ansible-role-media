@@ -12,3 +12,4 @@ cagent_hub_password: "test-hub-password"
 
 # nginx
 domain: test.example.com
+email: test@example.com
