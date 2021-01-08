@@ -35,7 +35,7 @@ jobs:
       - name: Install ansible
         run: python3 -m pip install -r requirementsDev.txt
       - name: Create file to simulate an attached disk
-        run: sudo truncate -s 2G /testdisk
+        run: sudo truncate -s 5G /testdisk
       - name: Copy role to somewhere it can be found
         run: cp -r ../ansible-role-media ~/media
       - name: Run playbook
