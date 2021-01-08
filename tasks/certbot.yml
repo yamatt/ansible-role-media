@@ -11,7 +11,7 @@
   command: "openssl dhparam -out {{ nginx_certs_path }}/dhparam.pem 4096"
   args:
     creates: "{{ nginx_certs_path }}/dhparam.pem"
-  when: "not {{ testing | default('no') | bool }}"
+  when: not testing | default('no') | bool
 
 - name: Check if certbot has been successfully run before
   stat:
