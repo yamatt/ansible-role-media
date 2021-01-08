@@ -65,9 +65,9 @@ jellyfin_cache_path: "{{ jellyfin_base_path }}/cache"
 jellyfin_cache_volume_path: "/cache"
 
 # nextcloud
-nextcloud_base_path: "{{ data_disk_mount_point }}/config/nextcloud/volumes"
+nextcloud_base_path: "{{ data_disk_mount_point }}/config/nextcloud"
 
-nextcloud_data_path: "{{ nextcloud_base_path }}/data"
+nextcloud_data_path: "{{ nextcloud_base_path }}/volumes/data"
 nextcloud_config_volume_path: /var/www/html
 
 nextcloud_config_file_path: "{{ nextcloud_data_path }}/config.php"

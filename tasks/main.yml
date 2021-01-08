@@ -6,7 +6,7 @@
 # disabled while spiking because it's slow to run
 #include_role: devsec.hardening.os_hardening
 - include_tasks: timesync.yml
-  when: "not {{ testing | default('no') | bool }}"
+  when: not testing | default('no') | bool
 #- include_tasks: cagent.yml
 - include_tasks: firewall.yml
 
