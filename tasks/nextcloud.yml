@@ -15,9 +15,6 @@
     src: nextcloud-mariadb/my.cnf
     dest: "{{ nextcloud_mariadb_config_volume_path }}"
 
-- name: Create nextcloud network to access database
-  community.general.docker_network:
-    name: nextcloud
 
 - name: Install MariaDB image
   docker_container:
@@ -26,8 +23,6 @@
     container_default_behavior: compatibility
     state: started
     restart: yes
-    networks:
-      - name: nextcloud
     env:
       MYSQL_ROOT_PASSWORD: password
     volumes:
@@ -40,10 +35,17 @@
     container_default_behavior: compatibility
     state: started
     restart: yes
-    networks:
-      - nextcloud
     volumes:
       - "{{ nextcloud_data_path }}:{{ nextcloud_config_volume_path }}"
+
+
+- name: Create nextcloud network to access database
+  community.general.docker_network:
+    name: nextcloud
+    connected:
+      - nextcloud
+      - nextcloud-mariadb
+    appends: yes
 
 - name: Connect to web gateway network to communicate with nginx
   community.general.docker_network:
