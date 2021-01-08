@@ -27,7 +27,7 @@
     state: started
     restart: yes
     networks:
-      - nextcloud
+      - name: nextcloud
     env:
       MYSQL_ROOT_PASSWORD: password
     volumes:
