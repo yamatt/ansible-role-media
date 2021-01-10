@@ -3,7 +3,8 @@
 - include_tasks: disks.yml
 - include_tasks: auditd.yml
 - include_tasks: apparmor.yml
-- include_role: devsec.hardening.os_hardening
+- include_role:
+    name: devsec.hardening.os_hardening
 - include_tasks: timesync.yml
   when: not testing | default('no') | bool
 #- include_tasks: cagent.yml
