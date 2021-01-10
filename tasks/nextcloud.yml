@@ -15,6 +15,8 @@
     src: nextcloud-mariadb/my.cnf
     dest: "{{ nextcloud_mariadb_config_volume_path }}"
 
+- debug:
+    msg: "{{ lookup('password', '/mariadb.password chars=ascii_letters') }}"
 
 - name: Install MariaDB image
   docker_container:
@@ -24,7 +26,7 @@
     state: started
     restart: yes
     env:
-      MYSQL_ROOT_PASSWORD: "{{ lookup('password', '/mariadb.password chars=ascii_letters') }}"
+      MYSQL_ROOT_PASSWORD: password
     volumes:
       - "{{ nextcloud_mariadb_data_path }}:{{ nextcloud_mariadb_data_volume_path }}"
 
