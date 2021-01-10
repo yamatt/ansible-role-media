@@ -15,9 +15,6 @@
     src: nextcloud-mariadb/my.cnf
     dest: "{{ nextcloud_mariadb_config_volume_path }}"
 
-- debug:
-    msg: "{{ lookup('password', '/mariadb.password chars=ascii_letters') }}"
-
 - name: Install MariaDB image
   docker_container:
     name: nextcloud-mariadb
