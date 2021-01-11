@@ -10,5 +10,3 @@ galaxy_info:
       versions:
         - focal
   galaxy_tags: []
-  dependencies:
-    - devsec.hardening
