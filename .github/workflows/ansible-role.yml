@@ -41,7 +41,7 @@ jobs:
       - name: Install this role locally
         run: ansible-galaxy install git+https://github.com/${GITHUB_REPOSITORY}.git
       - name: Run playbook
-        run: ansible --connection=local --inventory 127.0.0.1, --extra-vars "@tests/extra-vars.yml" --module-name include_role -a name=ansible-role-media localhost
+        run: ansible --become --connection=local --inventory 127.0.0.1, --extra-vars "@tests/extra-vars.yml" --module-name include_role -a name=ansible-role-media localhost
   trigger:
     name: If Lint and Test is successful trigger update on infrastructure
     needs:
