@@ -27,7 +27,6 @@ jobs:
     env:
       ANSIBLE_ROLES_PATH: ~/
     steps:
-      - uses: actions/checkout@v2
       - name: Install python3
         uses: actions/setup-python@v2
         with:
@@ -36,10 +35,10 @@ jobs:
         run: python3 -m pip install -r requirementsDev.txt
       - name: Create file to simulate an attached disk
         run: sudo truncate -s 5G /testdisk
-      - name: Copy role to somewhere it can be found
-        run: cp -r ../ansible-role-media ~/media
+      - name: Install this role locally
+        run: ansible-galaxy install git+https://github.com/${GITHUB_REPOSITORY}.git
       - name: Run playbook
-        run: ansible-playbook -i tests/inventory tests/playbook.yml --extra-vars "@tests/extra-vars.yml"
+        run: ansible --connection=local --inventory 127.0.0.1, --extra-vars "@tests/extra-vars.yml" --module-name include_role -a name=ansible-role-media localhost
   trigger:
     name: If Lint and Test is successful trigger update on infrastructure
     needs:
