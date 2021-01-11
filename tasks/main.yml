@@ -1,6 +1,7 @@
 ---
 - name: Gather facts
-    ansible.builtin.setup: {}
+  setup:
+    gather_subset: all
 - include_tasks: apt.yml
   when: not testing
 - include_tasks: disks.yml
