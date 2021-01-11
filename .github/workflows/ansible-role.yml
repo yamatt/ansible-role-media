@@ -27,6 +27,7 @@ jobs:
     env:
       ANSIBLE_ROLES_PATH: ~/
     steps:
+      - uses: actions/checkout@v2
       - name: Install python3
         uses: actions/setup-python@v2
         with:
