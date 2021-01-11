@@ -13,7 +13,7 @@
 - name: Copy over mariadb config as recommended by nextcloud
   copy:
     src: nextcloud-mariadb/my.cnf
-    dest: "{{ nextcloud_mariadb_config_volume_path }}"
+    dest: "{{ nextcloud_mariadb_config_path }}"
 
 - name: Install MariaDB image
   docker_container:
@@ -23,7 +23,7 @@
     state: started
     restart: yes
     env:
-      MYSQL_ROOT_PASSWORD: "{{ lookup('password',  '/maria-password.txt') }}"
+      MYSQL_ROOT_PASSWORD: "{{ lookup('password',  nextcloud_mariadb_config_path + /maria-password.txt') }}"
     volumes:
       - "{{ nextcloud_mariadb_data_path }}:{{ nextcloud_mariadb_data_volume_path }}"
 
