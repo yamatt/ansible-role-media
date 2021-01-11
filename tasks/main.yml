@@ -5,7 +5,7 @@
 - include_tasks: auditd.yml
 - include_tasks: apparmor.yml
 - include_role:
-    name: devsec.hardening.os_hardening
+    name: dev-sec.os-hardening
 - include_tasks: timesync.yml
   when: not testing | default('no') | bool
 #- include_tasks: cagent.yml
