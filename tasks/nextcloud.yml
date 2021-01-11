@@ -25,6 +25,7 @@
     env:
       MYSQL_ROOT_PASSWORD: "{{ lookup('password',  nextcloud_mariadb_config_path + /maria-password.txt') }}"
     volumes:
+      - "{{ nextcloud_mariadb_config_path }}:{{ nextcloud_mariadb_config_volume_path }}"
       - "{{ nextcloud_mariadb_data_path }}:{{ nextcloud_mariadb_data_volume_path }}"
 
 - name: Install Nextcloud image
