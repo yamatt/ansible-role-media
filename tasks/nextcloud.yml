@@ -23,7 +23,7 @@
     state: started
     restart: yes
     env:
-      MYSQL_ROOT_PASSWORD: "{{ lookup('password',  '/tmp/maria-password') }}"
+      MYSQL_ROOT_PASSWORD: "{{ lookup('password',  '/maria-password.txt') }}"
     volumes:
       - "{{ nextcloud_mariadb_data_path }}:{{ nextcloud_mariadb_data_volume_path }}"
 
