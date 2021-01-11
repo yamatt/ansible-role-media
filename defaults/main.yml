@@ -78,5 +78,7 @@ nextcloud_mariadb_base_path: "{{ nextcloud_base_path }}/mariadb"
 nextcloud_mariadb_config_path: "{{ nextcloud_mariadb_base_path }}/my.cnf"
 nextcloud_mariadb_config_volume_path: /etc/mysql/my.cnf
 
+nextcloud_mariadb_password: "{{ lookup('password',  nextcloud_mariadb_base_path + '/maria-password.txt') }}"
+
 nextcloud_mariadb_data_path: "{{ nextcloud_mariadb_base_path }}/volumes/data"
 nextcloud_mariadb_data_volume_path: /var/lib/mysql
