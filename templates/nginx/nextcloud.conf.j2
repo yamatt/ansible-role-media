@@ -4,7 +4,7 @@ location /nextcloud {
 
 location /nextcloud/ {
 
-    proxy_pass http://nextcloud:80/jellyfin/;
+    proxy_pass http://nextcloud:80/;
     proxy_http_version 1.1;
 
     proxy_pass_request_headers on;
