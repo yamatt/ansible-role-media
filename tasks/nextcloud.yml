@@ -51,7 +51,6 @@
     state: started
     restart: yes
     volumes:
-      - "{{ nextcloud_config_path }}:{{ nextcloud_config_file_volume_path }}"
       - "{{ nextcloud_data_path }}:{{ nextcloud_config_volume_path }}"
 
 
