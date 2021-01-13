@@ -14,7 +14,7 @@ ExecStart=/usr/bin/rclone mount media-b2:{{ rclone_b2_media_bucket }} {{ rclone_
   --dir-cache-time 1000h \
   --poll-interval=15s \
   --vfs-cache-mode writes \
-  --tpslimit 10
+  --tpslimit 10 \
   --read-only
 
 StandardOutput=file:{{ rclone_log_file_path }}
