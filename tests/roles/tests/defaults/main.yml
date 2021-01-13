@@ -6,3 +6,9 @@ nginx_check_full_directory_path: "{{ nginx_web_root_path }}/{{ nginx_check_direc
 nginx_check_file_name: example.txt
 nginx_check_file_path: "{{ nginx_check_full_directory_path }}/{{ nginx_check_file_name }}"
 nginx_check_file_url_path: "{{ nginx_check_directory_path }}/{{ nginx_check_file_name }}"
+
+# rclone
+rclone_b2_bucket:  mc-test-ahyei7Ee
+rclone_b2_media_key_id: 0011a078d7182cd0000000010
+rclone_b2_media_application_key: K001har9P8DHju/Z0E0n3o5aPPrI+34
+download_url: media.copperwaite.net

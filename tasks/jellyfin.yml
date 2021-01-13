@@ -32,6 +32,11 @@
     volumes:
       - "{{ jellyfin_config_path }}:{{ jellyfin_config_volume_path }}"
       - "{{ jellyfin_cache_path }}:{{ jellyfin_cache_volume_path }}"
+    mounts:
+      - type: bind
+        read_only: yes
+        source: "{{ rclone_mount_directory_path }}"
+        target: /media
 
 - name: Connect to web gateway network to communicate with nginx
   community.general.docker_network:

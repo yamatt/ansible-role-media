@@ -53,6 +53,17 @@ certbot_state_volume_path: /var/lib/letsencrypt
 
 # the nginx path is used as the source path
 certbot_webroot_volume_path: /var/www
+
+# rclone
+
+rclone_config_directory: /etc/rclone
+rclone_config_file_path: "{{ rclone_config_directory }}/rclone.conf"
+
+rclone_log_directory: /var/log/rclone
+rclone_log_file_path: "{{ rclone_log_directory }}/rclone.log"
+
+rclone_mount_directory_path: /mnt/media
+
 # jellyfin
 jellyfin_base_path: "{{ data_disk_mount_point }}/config/jellyfin/volumes"
 

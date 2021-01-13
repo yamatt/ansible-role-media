@@ -1,0 +1,24 @@
+[Unit]
+Description=RClone Service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+KillMode=none
+Environment=GOMAXPROCS=2
+
+ExecStart=/usr/bin/rclone mount media-b2:{{ rclone_b2_bucket }} {{ rclone_mount_directory_path }} \
+  --config {{ rclone_config_file_path }} \
+  --use-mmap \
+  --dir-cache-time 1000h \
+  --poll-interval=15s \
+  --vfs-cache-mode writes \
+  --tpslimit 10
+
+StandardOutput=file:{{ rclone_log_file_path }}
+ExecStop=/bin/fusermount -uz {{ rclone_mount_directory_path }}
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
