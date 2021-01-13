@@ -14,6 +14,7 @@
   copy:
     src: jellyfin/system.xml
     dest: "{{ jellyfin_config_system_path }}/system.xml"
+    force: no
 
 - name: Create jellyfin configuration for nginx
   template:
