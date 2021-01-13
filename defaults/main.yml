@@ -70,7 +70,8 @@ nextcloud_base_path: "{{ data_disk_mount_point }}/config/nextcloud"
 nextcloud_data_path: "{{ nextcloud_base_path }}/volumes/data"
 nextcloud_config_volume_path: /var/www/html/data
 
-nextcloud_config_file_path: "{{ nextcloud_data_path }}/config.php"
+nextcloud_config_path: "{{ nextcloud_base_path }}/config.php"
+nextcloud_config_file_volume_path: "/var/www/html/config.php"
 
 ## mariadb
 nextcloud_mariadb_base_path: "{{ nextcloud_base_path }}/mariadb"
