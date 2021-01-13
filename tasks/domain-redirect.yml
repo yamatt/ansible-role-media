@@ -1,0 +1,7 @@
+---
+- name: Create redirect configuration for nginx
+  template:
+    src: nginx/redirect.conf.j2
+    dest: "{{ nginx_config_webgateway_path }}/redirect.conf"
+  notify:
+    - Restart Nginx
