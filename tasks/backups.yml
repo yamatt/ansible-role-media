@@ -1,0 +1,38 @@
+---
+- name: Install duplicity
+  apt:
+    name: auditd
+    state: present
+  loop:
+    - duplicity
+    - gnupg2
+
+- name: Create directory for duplicity state files
+  file:
+    path: "{{ duplicity_state_directory_path }}"
+    state: directory
+    recurse: yes
+
+- name: copy over public gpg key
+  copy:
+    src: "backups/{{ gpg_public_key_file_name }}"
+    dest: "{{ gpg_public_key_destination_file_path }}"
+
+- name: add public gpg key to gpg keyring
+  command: gpg --import "{{ gpg_public_key_destination_file_path }}"
+
+- name: setup duplicity systemd timer
+  copy:
+    src: "backups/duplicity-backups.timer"
+    dest: "/etc/systemd/system/duplicity-backups.timer"
+
+- name: setup duplicity systemd service
+  template:
+    src: "backups/duplicity-backups.service"
+    dest: "/etc/systemd/system/duplicity-backups.service"
+
+- name: enable and start systemd timer
+  ansible.builtin.systemd:
+    name: duplicity-backups.timer
+    state: started
+    enabled: yes

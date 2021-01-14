@@ -1,0 +1,8 @@
+[Unit]
+Description=Backup Matt	user data to B2	using Duplicity
+RefuseManualStart=no
+RefuseManualStop=yes
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/duplicity --encrypt-key {{ public_key_id }} --archive-dir {{ duplicity_state_directory_path }} {{ backup_directory }} {{ duplicity_b2_media_backups_url }}
