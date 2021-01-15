@@ -23,12 +23,12 @@
 
 - name: setup duplicity systemd timer
   copy:
-    src: "backups/duplicity-backups.timer"
+    src: "backups/duplicity-backup.timer"
     dest: "/etc/systemd/system/duplicity-backups.timer"
 
 - name: setup duplicity systemd service
   template:
-    src: "backups/duplicity-backups.service.j2"
+    src: "backups/duplicity-backup.service.j2"
     dest: "/etc/systemd/system/duplicity-backups.service"
 
 - name: enable and start systemd timer
