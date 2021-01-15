@@ -36,3 +36,4 @@
     name: duplicity-backups.timer
     state: started
     enabled: yes
+    masked: no
