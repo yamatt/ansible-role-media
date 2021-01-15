@@ -10,6 +10,10 @@ cagent_hub_url: "https://example.hub.com"
 cagent_hub_user: "test-hub-user"
 cagent_hub_password: "test-hub-password"
 
+# duplicity
+
+duplicity_b2_media_backups_url: b2://0011a078d7182cd0000000010:K001har9P8DHju%2FZ0E0n3o5aPPrI%2B34@mc-test-ahyei7Ee/backups
+
 # rclone
 rclone_b2_media_bucket:  mc-test-ahyei7Ee
 rclone_b2_media_key_id: 0011a078d7182cd0000000010
