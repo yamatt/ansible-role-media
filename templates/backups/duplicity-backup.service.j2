@@ -5,4 +5,4 @@ RefuseManualStop=yes
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/duplicity --encrypt-key {{ public_key_id }} --archive-dir {{ duplicity_state_directory_path }} {{ backup_directory }} {{ duplicity_b2_media_backups_url }}
+ExecStart=/usr/bin/duplicity --encrypt-key {{ public_key_id }} --archive-dir {{ duplicity_state_directory_path }} {{ backup_directory }} {{ duplicity_media_backups_url }}
