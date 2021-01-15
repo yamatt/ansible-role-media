@@ -1,7 +1,7 @@
 ---
 - name: Install duplicity
   apt:
-    name: auditd
+    name: "{{ item }}"
     state: present
   loop:
     - duplicity
