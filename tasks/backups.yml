@@ -37,4 +37,4 @@
     state: started
     enabled: yes
     masked: no
-  when: not testing
+  when: not testing | default('no') | bool
