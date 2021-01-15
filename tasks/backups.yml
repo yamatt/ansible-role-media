@@ -37,3 +37,4 @@
     state: started
     enabled: yes
     masked: no
+  when: not testing
