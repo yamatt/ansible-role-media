@@ -7,6 +7,10 @@
     - duplicity
     - gnupg2
 
+- name: Install the b2 python package so duplicity can use it
+  pip:
+    name: "b2"
+
 - name: Create directory for duplicity state files
   file:
     path: "{{ duplicity_state_directory_path }}"
