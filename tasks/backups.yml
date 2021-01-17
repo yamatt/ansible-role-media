@@ -26,13 +26,14 @@
   command: gpg --import "{{ gpg_public_key_destination_file_path }}"
 
 - name: trust gpg key
-  command: gpg --no-tty --edit-key "{{ public_key_id }}"
+  command: gpg --edit-key "{{ public_key_id }}"
   args:
     stdin: |
       trust
       5
       y
       q
+  when: not testing | default('no') | bool
 
 - name: setup duplicity systemd timer
   copy:
