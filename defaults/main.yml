@@ -29,6 +29,9 @@ duplicity_state_directory_path: "{{ data_disk_mount_point }}/config/duplicity"
 gpg_public_key_file_name: media-server-backups.pubkey.gpg
 gpg_public_key_destination_file_path: "/tmp/{{ gpg_public_key_file_name }}"
 
+gpg_trust_public_key_file_name: media-server-backups.pubkey.gpg.trust
+gpg_trust_public_key_destination_file_path: "/tmp/{{ gpg_public_key_file_name }}"
+
 backup_directory: "{{ data_disk_mount_point }}"
 public_key_id: A5FEC7C1E8980C1A
 
