@@ -22,18 +22,10 @@
     src: "backups/{{ gpg_public_key_file_name }}"
     dest: "{{ gpg_public_key_destination_file_path }}"
 
-- name: add public gpg key to gpg keyring
-  command: gpg --import "{{ gpg_public_key_destination_file_path }}"
-
-- name: trust gpg key
-  command: gpg --edit-key "{{ public_key_id }}"
-  args:
-    stdin: |
-      trust
-      5
-      y
-      q
-  when: not testing | default('no') | bool
+- name: add key from file and set trust
+  gpg_key:
+    file: "{{ gpg_public_key_destination_file_path }}"
+    trust: '5'
 
 - name: setup duplicity systemd timer
   copy:
