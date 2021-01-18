@@ -43,9 +43,5 @@
     connected:
       - jellyfin
     appends: yes
-
-- name: Pause for 5 minutes so that network and jellyfin get time to start
-  pause:
-    minutes: 1
   notify:
     - Restart Nginx
