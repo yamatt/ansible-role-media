@@ -1,0 +1,11 @@
+---
+- name: Create module directory
+  file:
+    path: "{{ ansible_module_dir }}"
+    state: directory
+    recurse: yes
+
+- name: Download file to right path
+  get_url:
+    url: https://raw.githubusercontent.com/netson/ansible-gpg-key/master/gpg_key.py
+    dest: "{{ ansible_module_dir }}/gpg_key.py"

@@ -1,5 +1,1 @@
 - name: dev-sec.os-hardening
-- name: gpg
-  scm: git
-  src: git+https://github.com/netson/ansible-gpg-key.git
-  version: master

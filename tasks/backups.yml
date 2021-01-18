@@ -7,6 +7,9 @@
     - duplicity
     - gnupg2
 
+- name: Install ansible GPG module
+  include_tasks: gpg-module.yml
+
 - name: Install the b2 python package so duplicity can use it
   pip:
     name: "b2"
