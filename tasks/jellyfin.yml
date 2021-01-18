@@ -45,3 +45,5 @@
     connected:
       - jellyfin
     appends: yes
+  notify:
+    - Restart Nginx
