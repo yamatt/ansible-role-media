@@ -11,7 +11,7 @@ data_disk_mount_point: /mnt/data
 audit_rules_dir: "/etc/audit/rules.d/"
 
 # ssh
-enable_ssh: no
+enable_ssh: yes
 
 # cagent
 cagent_release_version: "1.8.0"
