@@ -31,7 +31,7 @@
   command: gpg --import "{{ gpg_public_key_destination_file_path }}"
 
 - name: add trust of public gpg key to gpg keyring
-  command: gpg --import-ownertrust" "{{ gpg_trust_public_key_destination_file_path }}"
+  command: gpg --import-ownertrust "{{ gpg_trust_public_key_destination_file_path }}"
 
 - name: setup duplicity systemd timer
   copy:
