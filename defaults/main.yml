@@ -10,6 +10,9 @@ data_disk_mount_point: /mnt/data
 #auditd
 audit_rules_dir: "/etc/audit/rules.d/"
 
+# ssh
+enable_ssh: no
+
 # cagent
 cagent_release_version: "1.8.0"
 cagent_log_path: "/var/log/cagent/cagent.log"
@@ -18,9 +21,6 @@ cagent_log_level: "info"
 cagent_hub_url: "https://hub.cloudradar.io/ctrapper/"
 
 nginx_certs_config_path: "{{ nginx_config_path }}/certs.conf"
-
-# gpg module
-ansible_module_dir: "{{ ansible_user_dir }}/.ansible/plugins/modules/"
 
 # backups
 
