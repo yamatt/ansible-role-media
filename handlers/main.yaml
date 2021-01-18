@@ -20,4 +20,3 @@
     state: started
     restart: yes
     container_default_behavior: compatibility
-  delay: 10

@@ -20,8 +20,6 @@
   template:
     src: nginx/jellyfin.conf.j2
     dest: "{{ nginx_config_webgateway_path }}/jellyfin.conf"
-  notify:
-    - Restart Nginx
 
 - name: Install Jellyfin image
   docker_container:
