@@ -1,0 +1,32 @@
+---
+- name: Create temporary file to place logdna respository GPG key
+  tempfile:
+    state: file
+  register: tempory_key
+
+- name: Copy over logdna respository GPG key
+  copy:
+    src: logdna/logdna.gpg
+    dest: "{{ tempory_key.path }}"
+
+- name: Add logdna respository GPG key
+  apt_key:
+    file: "{{ tempory_key.path }}"
+    state: present
+
+- name: Add logdna repository
+  apt_repository:
+    repo: deb https://repo.logdna.com stable main
+    state: present
+    filename: logdna
+
+- name: Template config file
+  template:
+    src: logdna/logdna.conf.j2
+    dest: "/etc/logdna.conf"
+
+- name: Install cagent
+  apt:
+    name: logdna-agent
+    state: present
+    update_cache: yes

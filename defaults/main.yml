@@ -40,7 +40,6 @@ docker_config_directory_path: /etc/docker
 docker_config_file_path: "{{ docker_config_directory_path}}/daemon.json"
 docker_config:
   data-root: "{{ data_disk_mount_point }}/config/docker/state"
-  log-driver: "journald"
 
 # nginx
 nginx_path: "{{ data_disk_mount_point }}/config/nginx/volumes"
