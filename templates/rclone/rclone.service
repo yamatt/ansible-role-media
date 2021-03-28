@@ -15,7 +15,8 @@ ExecStart=/usr/bin/rclone mount media-b2:{{ rclone_b2_media_bucket }} {{ rclone_
   --poll-interval=15s \
   --vfs-cache-mode writes \
   --tpslimit 10 \
-  --read-only
+  --read-only \
+  --verbose
 
 StandardOutput=file:{{ rclone_log_file_path }}
 ExecStop=/bin/fusermount -uz {{ rclone_mount_directory_path }}
