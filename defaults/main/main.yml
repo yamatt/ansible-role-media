@@ -1,11 +1,5 @@
 ---
 
-# versions
-backups_b2_sdk_version: 1.7.0
-certbot_version: v1.16.0
-jellyfin_version: 10.7.6-amd64
-nginx_version: 1.21.0
-
 #apt
 apt_conf_d: /etc/apt/apt.conf.d/
 
