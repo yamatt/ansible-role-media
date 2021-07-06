@@ -17,7 +17,7 @@
 - name: Install Nginx image
   docker_container:
     name: nginx
-    image: "nginx:nginx_version"
+    image: "nginx:{{ nginx_version }}"
     container_default_behavior: compatibility
     state: started
     restart: yes
