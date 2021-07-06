@@ -9,7 +9,7 @@
 
 - name: Install the b2 python package so duplicity can use it
   pip:
-    name: b2sdk==1.7.0
+    name: "b2sdk=={{ backups_b2_sdk_version }}"
 
 - name: Create directory for duplicity state files
   file:

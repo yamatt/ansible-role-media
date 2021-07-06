@@ -24,7 +24,7 @@
 - name: Install Jellyfin image
   docker_container:
     name: jellyfin
-    image: jellyfin/jellyfin:10.7.5-amd64
+    image: "jellyfin/jellyfin:{{ jellyfin_version }}"
     container_default_behavior: compatibility
     state: started
     restart: yes

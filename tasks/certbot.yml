@@ -21,7 +21,7 @@
 - name: Run certbot image
   docker_container:
     name: certbot
-    image: certbot/certbot:v1.14.0
+    image: "certbot/certbot:{{ certbot_version }}"
     command: "certonly --non-interactive --agree-tos --email {{ email }} --webroot -w /var/www -d {{ domain }}"
     container_default_behavior: compatibility
     volumes:
