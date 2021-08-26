@@ -5,6 +5,7 @@
 - include_tasks: apt.yml
   when: not testing | default('no') | bool
 - include_tasks: disks.yml
+- include_tasks: swap.yml
 - include_tasks: auditd.yml
 - include_tasks: apparmor.yml
 - include_role:
