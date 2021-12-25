@@ -31,6 +31,7 @@
     name: logdna-agent
     state: present
     update_cache: yes
+    force_apt_get: yes
 
 - name: add systemd service file
   copy:
