@@ -19,6 +19,7 @@
     repo: deb https://repo.logdna.com stable main
     state: present
     filename: logdna
+    update_cache: no
 
 - name: Template config file
   template:
