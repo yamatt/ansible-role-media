@@ -3,4 +3,4 @@
 backups_b2_sdk_version: 1.7.0
 certbot_version: v1.22.0
 jellyfin_version: 10.7.7-amd64
-nginx_version: 1.21.5
+nginx_version: 1.21.6
