@@ -15,7 +15,7 @@ swap_file_path: /swap
 audit_rules_dir: "/etc/audit/rules.d/"
 
 # ssh
-enable_ssh: false
+enable_ssh: true
 
 # cagent
 cagent_release_version: "1.8.0"
