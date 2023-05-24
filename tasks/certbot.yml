@@ -33,7 +33,7 @@
 - name: Renew certbot image
   docker_container:
     name: certbot-renew
-    image: certbot/certbot:v1.12.0
+    image: "certbot/certbot:{{ certbot_version }}"
     command: "certonly renew"
     volumes:
       - "{{ nginx_certs_path }}:{{ certbot_certs_volume_path }}"
