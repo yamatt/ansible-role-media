@@ -2,5 +2,5 @@
 # versions
 backups_b2_sdk_version: 1.7.0 # https://github.com/Backblaze/b2-sdk-python/releases
 certbot_version: v2.6.0 # https://hub.docker.com/r/certbot/certbot/tags?page=1&name=v2.
+nginx_version: 1.25.1 # https://hub.docker.com/_/nginx/tags?page=1&name=1.
 jellyfin_version: 10.8.10-amd64 # https://github.com/jellyfin/jellyfin/releases
-nginx_version: 1.24.0 # https://hub.docker.com/_/nginx/tags
