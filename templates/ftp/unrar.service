@@ -1,0 +1,18 @@
+[Unit]
+Description=UnRAR Service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+KillMode=none
+Environment=GOMAXPROCS=2
+
+ExecStart=/usr/bin/rar2fs {{ ftp_mount_directory_path }} {{ ftp_rar_mount_directory_path }} -o allow_other
+
+StandardOutput=file:{{ rclone_log_file_path }}
+ExecStop=/bin/fusermount -uz {{ rclone_mount_directory_path }}
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

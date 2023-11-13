@@ -84,6 +84,11 @@ rclone_log_file_path: "{{ rclone_log_directory }}/rclone.log"
 
 rclone_mount_directory_path: /mnt/media
 
+# ftp
+
+ftp_mount_directory_path: /mnt/ftp
+ftp_rar_mount_directory_path: /mnt/unrar
+
 # jellyfin
 jellyfin_base_path: "{{ data_disk_mount_point }}/config/jellyfin/volumes"
 

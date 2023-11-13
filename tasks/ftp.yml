@@ -1,0 +1,52 @@
+---
+- name: Create directories for ftp
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+  loop:
+    - "{{ ftp_mount_directory_path }}"
+
+- name: Install ftp
+  apt:
+    name: curlftpfs
+    state: present
+
+- name: Create curlftpfs service
+  template:
+    src: ftp/ftp.service
+    dest: /etc/systemd/system
+
+- name: Set ftp service to run
+  service:
+    name: ftp
+    state: started
+    masked: no
+    enabled: yes
+
+# This part re-mounts the ftp mount and uses rar2fs the ability to invisibly un-rar any files
+
+- name: Create directories for ftp
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+  loop:
+    - "{{ ftp_rar_mount_directory_path }}"
+
+- name: RAR Extract
+  copy:
+    src: ftp/rar2fs
+    dest: /usr/bin/rar2fs
+
+- name: Create unrar service
+  template:
+    src: ftp/unrar.service
+    dest: /etc/systemd/system
+
+- name: Set unrar service to run
+  service:
+    name: unrar
+    state: started
+    masked: no
+    enabled: yes

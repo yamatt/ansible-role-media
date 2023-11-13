@@ -19,6 +19,7 @@
 - include_tasks: firewall.yml
 
 - include_tasks: rclone.yml
+- include_tasks: ftp.yml
 
 - include_tasks: rebuild.yml
 
