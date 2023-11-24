@@ -8,8 +8,8 @@ Type=notify
 KillMode=none
 Environment=GOMAXPROCS=2
 
-ExecStart=/usr/bin/curlftpfs {{ ftp_server_host }} {{ ftp_mount_directory_path }} \
-  -o user={{ ftp_server_userpass }},allow_other,ssl,no_verify_peer \
+ExecStart=/usr/bin/curlftpfs {{ ansible_facts["secrets"]["FTP_SERVER_HOST"] }} {{ ftp_mount_directory_path }} \
+  -o user={{ ansible_facts["secrets"]["FTP_SERVER_USERPASS"] }},allow_other,ssl,no_verify_peer \
   -r \
   -f \
   --verbose

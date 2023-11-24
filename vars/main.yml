@@ -1,14 +1,3 @@
 ---
-# certbot
-email: {{ ansible_facts["secrets"]["CONTACT_EMAIL"] }}
-domain: {{ ansible_facts["secrets"]["CONTACT_EMAIL"] }}
 
-# rclone
-rclone_b2_media_bucket: {{ ansible_facts["secrets"]["RCLONE_B2_MEDIA_BUCKET"] }}
-rclone_b2_media_key_id: {{ ansible_facts["secrets"]["RCLONE_B2_MEDIA_KEY_ID"] }}
-rclone_b2_media_application_key: {{ ansible_facts["secrets"]["RCLONE_B2_MEDIA_APPLICATION_KEY"] }}
-download_url: {{ ansible_facts["secrets"]["RCLONE_B2_MEDIA_URL"] }}
 
-# ftp
-ftp_server_host: {{ ansible_facts["secrets"]["FTP_SERVER_HOST"] }}
-ftp_server_userpass: {{ ansible_facts["secrets"]["FTP_SERVER_USERPASS"] }}
