@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install ansible==9.0.1 molecule==6.0.2 
+          python3 -m pip install ansible==2.9.27 molecule==6.0.2 
       - name: Run molecule
         run: |
           molecule lint
@@ -33,7 +33,7 @@ jobs:
       - name: Install ansible
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install ansible==9.0.1
+          python3 -m pip install ansible==2.9.27
       - name: Create file to simulate an attached disk
         run: sudo truncate -s 5G /testdisk
       - name: Install this role locally
