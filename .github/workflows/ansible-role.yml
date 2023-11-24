@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python 3.8
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: '3.10'
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install ansible==2.9.27 molecule==6.0.2 
+          python3 -m pip install ansible==2.9.27 molecule==4.0.4
       - name: Run molecule
         run: |
           molecule lint
