@@ -4,16 +4,6 @@ testing: yes
 # disks
 data_disk_device_path: /testdisk
 
-# cagent
-
-cagent_hub_url: "https://example.hub.com"
-cagent_hub_user: "test-hub-user"
-cagent_hub_password: "test-hub-password"
-
-# logdna
-
-logdna_key: "test-key"
-
 # duplicity
 
 duplicity_media_backups_url: b2://0011a078d7182cd0000000010:K001har9P8DHju%2FZ0E0n3o5aPPrI%2B34@mc-test-ahyei7Ee/backups
