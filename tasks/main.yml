@@ -1,4 +1,5 @@
 ---
+# generic runs
 - name: Gather facts
   setup:
     gather_subset: all
@@ -13,8 +14,11 @@
   when: not testing | default('no') | bool
 - include_tasks: timesync.yml
   when: not testing | default('no') | bool
-- include_tasks: backups.yml
 - include_tasks: firewall.yml
+
+- include_role: secrets.yml
+
+# this build specifically
 
 - include_tasks: rclone.yml
 - include_tasks: ftp.yml
