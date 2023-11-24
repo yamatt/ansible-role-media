@@ -16,7 +16,7 @@
   when: not testing | default('no') | bool
 - include_tasks: firewall.yml
 
-- include_role: secrets.yml
+- include_tasks: secrets.yml
 
 # this build specifically
 
