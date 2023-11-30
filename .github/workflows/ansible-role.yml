@@ -15,7 +15,7 @@ jobs:
           python-version: '3.12'
           cache: 'pipenv'
       - name: Install pipenv
-        run: python3 -m install pipenv
+        run: python3 -m pip install pipenv
       - name: Install dependencies
         run: pipenv install
       - name: Run molecule
@@ -33,7 +33,7 @@ jobs:
           python-version: '3.12'
           cache: 'pipenv'
       - name: Install pipenv
-        run: python3 -m install pipenv
+        run: python3 -m pip install pipenv
       - name: Install ansible
         run: pipenv install
       - name: Create file to simulate an attached disk
