@@ -14,9 +14,6 @@
     name: rclone
     state: present
 
-- debug:
-    msg: "{{ ansible_facts }}"
-
 - name: Create rclone config
   template:
     src: rclone/rclone.conf

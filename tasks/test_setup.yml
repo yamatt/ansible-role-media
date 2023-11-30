@@ -1,4 +1,4 @@
 ---
 - name: Store secrets in facts
   set_fact:
-    secrets: "{{ secrets }}"
+    secrets: secrets
