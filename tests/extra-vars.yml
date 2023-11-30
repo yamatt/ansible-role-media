@@ -6,11 +6,13 @@ data_disk_device_path: /testdisk
 
 # secrets
 secrets:
-  CONTACT_EMAIL: "test@example.com"
-  DOMAIN: "example.com"
-  FTP_SERVER_HOST: "ftp.example.com"
-  FTP_SERVER_USERPASS: "example:password"
-  RCLONE_B2_MEDIA_APPLICATION_KEY: "0011a078d7182cd0000000000"
-  RCLONE_B2_MEDIA_BUCKET: "example-bucket"
-  RCLONE_B2_MEDIA_KEY_ID: "example-media-key"
-  RCLONE_B2_MEDIA_URL: "https://media.example.com"
+  body:
+    secrets:
+      CONTACT_EMAIL: "test@example.com"
+      DOMAIN: "example.com"
+      FTP_SERVER_HOST: "ftp.example.com"
+      FTP_SERVER_USERPASS: "example:password"
+      RCLONE_B2_MEDIA_APPLICATION_KEY: "0011a078d7182cd0000000000"
+      RCLONE_B2_MEDIA_BUCKET: "example-bucket"
+      RCLONE_B2_MEDIA_KEY_ID: "example-media-key"
+      RCLONE_B2_MEDIA_URL: "https://media.example.com"
