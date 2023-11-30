@@ -17,6 +17,7 @@
 - include_tasks: firewall.yml
 
 - include_tasks: secrets.yml
+  when: not testing | default('no') | bool
 
 # this build specifically
 
