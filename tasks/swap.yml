@@ -1,6 +1,9 @@
 ---
 - name: Create swap file
-  command: "dd if=/dev/zero of={{ swap_file_path }} bs={{ ansible_memtotal_mb }} count=1048576"
+  command:
+    cmd: "dd if=/dev/zero of={{ swap_file_path }} bs={{ ansible_memtotal_mb }} count=1048576"
+    creates: "{{ swap_file_path }}"
+
 
 - name : Format swap
   filesystem:
