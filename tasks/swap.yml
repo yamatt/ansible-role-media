@@ -17,4 +17,6 @@
     dev: "{{ swap_file_path }}"
 
 - name: Enable swap
-  command: "swapon {{ swap_file_path }}"
+  command:
+    cmd: "swapon {{ swap_file_path }}"
+    creates: "{{ swap_file_path }}"
