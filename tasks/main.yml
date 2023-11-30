@@ -3,6 +3,10 @@
 - name: Gather facts
   setup:
     gather_subset: all
+
+- include_tasks: test_setup.yml
+  when: testing | default('no') | bool
+
 - include_tasks: apt.yml
   when: not testing | default('no') | bool
 - include_tasks: disks.yml
