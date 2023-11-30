@@ -24,6 +24,7 @@
     state: started
     masked: no
     enabled: yes
+  when: not testing | default('no') | bool
 
 # This part re-mounts the ftp mount and uses rar2fs the ability to invisibly un-rar any files
 
@@ -43,3 +44,4 @@
     state: started
     masked: no
     enabled: yes
+  when: not testing | default('no') | bool
