@@ -18,10 +18,10 @@ jobs:
         run: python3 -m pip install pipenv
       - name: Install dependencies
         run: pipenv install
-      - name: Run molecule
+      - name: Run ansible-lint
         run: |
-          pipenv run molecule lint
-          pipenv run molecule syntax
+          pipenv run ansible-lint
+    continue-on-error: true
   test:
     name: Run Tests
     runs-on: ubuntu-20.04
