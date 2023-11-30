@@ -12,11 +12,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.9'
+          cache: 'pipenv'
+      - name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
       - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install ansible==2.9.27 molecule==4.0.4
+        run: pipenv install
       - name: Run molecule
         run: |
           molecule lint
@@ -27,13 +28,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install python3
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.9'
+          cache: 'pipenv'
+      - name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
       - name: Install ansible
-        run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install ansible==2.9.27
+        run: pipenv install
       - name: Create file to simulate an attached disk
         run: sudo truncate -s 5G /testdisk
       - name: Install this role locally
