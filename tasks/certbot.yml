@@ -22,7 +22,7 @@
   docker_container:
     name: certbot
     image: "certbot/certbot:{{ certbot_version }}"
-    command: "certonly --non-interactive --agree-tos --email {{ ansible_facts['secrets']['CONTACT_EMAIL'] }} --webroot -w /var/www -d {{ nsible_facts['secrets']['DOMAIN'] }}"
+    command: "certonly --non-interactive --agree-tos --email {{ secrets.body.secrets.CONTACT_EMAIL }} --webroot -w /var/www -d {{ secrets.body.secrets.DOMAIN }}"
     container_default_behavior: compatibility
     volumes:
       - "{{ nginx_certs_path }}:{{ certbot_certs_volume_path }}"
