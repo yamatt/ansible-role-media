@@ -8,7 +8,7 @@ Type=notify
 KillMode=none
 Environment=GOMAXPROCS=2
 
-ExecStart=/usr/bin/rclone mount media-b2:{{ secrets.body.secrets.RCLONE_B2_MEDIA_BUCKET }} {{ rclone_mount_directory_path }} \
+ExecStart=/usr/bin/rclone mount media-b2:{{ secrets.RCLONE_B2_MEDIA_BUCKET }} {{ rclone_mount_directory_path }} \
   --config {{ rclone_config_file_path }} \
   --use-mmap \
   --dir-cache-time 1000h \

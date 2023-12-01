@@ -8,8 +8,8 @@ Type=notify
 KillMode=none
 Environment=GOMAXPROCS=2
 
-ExecStart=/usr/bin/curlftpfs {{ secrets.body.secrets.FTP_SERVER_HOST }} {{ ftp_mount_directory_path }} \
-  -o user={{ secrets.body.secrets.FTP_SERVER_USERPASS }},allow_other,ssl,no_verify_peer \
+ExecStart=/usr/bin/curlftpfs {{ secrets.FTP_SERVER_HOST }} {{ ftp_mount_directory_path }} \
+  -o user={{ secrets.FTP_SERVER_USERPASS }},allow_other,ssl,no_verify_peer \
   -r \
   -f \
   --verbose
