@@ -36,7 +36,7 @@
     proto: tcp
 
 - name: Create Nginx web gateway network for other containers running webservers to serve through
-  community.general.docker_network:
+  community.docker.docker_network:
     name: "{{ webgateway_network_name }}"
     connected:
       - nginx
