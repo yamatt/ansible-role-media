@@ -35,7 +35,11 @@
       - type: bind
         read_only: yes
         source: "{{ rclone_mount_directory_path }}"
-        target: /media
+        target: /media/b2/matt
+      - type: bind
+        read_only: yes
+        source: "{{ ftp_rar_mount_directory_path }}"
+        target: /media/ftp/eagle
 
 - name: Connect to web gateway network to communicate with nginx
   community.general.docker_network:
