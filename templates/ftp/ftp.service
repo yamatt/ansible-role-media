@@ -14,8 +14,8 @@ ExecStart=/usr/bin/curlftpfs {{ secrets.FTP_SERVER_HOST }} {{ ftp_mount_director
   -f \
   --verbose
 
-StandardOutput=file:{{ rclone_log_file_path }}
-ExecStop=/bin/fusermount -uz {{ rclone_mount_directory_path }}
+StandardOutput=file:{{ ftp_log_file_path }}
+ExecStop=/bin/fusermount -uz {{ ftp_mount_directory_path }}
 Restart=on-failure
 
 [Install]

@@ -10,8 +10,8 @@ Environment=GOMAXPROCS=2
 
 ExecStart=/usr/bin/rar2fs {{ ftp_mount_directory_path }} {{ ftp_rar_mount_directory_path }} -o allow_other
 
-StandardOutput=file:{{ rclone_log_file_path }}
-ExecStop=/bin/fusermount -uz {{ rclone_mount_directory_path }}
+StandardOutput=file:{{ unrar_log_file_path }}
+ExecStop=/bin/fusermount -uz {{ ftp_mount_directory_path }}
 Restart=on-failure
 
 [Install]

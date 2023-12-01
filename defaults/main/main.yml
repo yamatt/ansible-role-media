@@ -89,6 +89,10 @@ rclone_mount_directory_path: /mnt/media
 ftp_mount_directory_path: /mnt/ftp
 ftp_rar_mount_directory_path: /mnt/unrar
 
+ftp_log_directory: /var/log/ftp
+ftp_log_file_path: "{{ rclone_log_directory }}/ftp.log"
+unrar_log_file_path: "{{ rclone_log_directory }}/unrar.log"
+
 # jellyfin
 jellyfin_base_path: "{{ data_disk_mount_point }}/config/jellyfin/volumes"
 
