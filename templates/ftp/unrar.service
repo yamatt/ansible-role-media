@@ -4,14 +4,11 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-Type=notify
-KillMode=none
-Environment=GOMAXPROCS=2
+Type=simple
 
 ExecStart=/usr/bin/rar2fs {{ ftp_mount_directory_path }} {{ ftp_rar_mount_directory_path }} -o allow_other
 
 StandardOutput=file:{{ unrar_log_file_path }}
-ExecStop=/bin/fusermount -uz {{ ftp_mount_directory_path }}
 Restart=on-failure
 
 [Install]

@@ -4,9 +4,7 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-Type=notify
-KillMode=none
-Environment=GOMAXPROCS=2
+Type=simple
 
 ExecStart=/usr/bin/curlftpfs {{ secrets.FTP_SERVER_HOST }} {{ ftp_mount_directory_path }} \
   -o user={{ secrets.FTP_SERVER_USERPASS }},allow_other,ssl,no_verify_peer \
@@ -15,7 +13,6 @@ ExecStart=/usr/bin/curlftpfs {{ secrets.FTP_SERVER_HOST }} {{ ftp_mount_director
   --verbose
 
 StandardOutput=file:{{ ftp_log_file_path }}
-ExecStop=/bin/fusermount -uz {{ ftp_mount_directory_path }}
 Restart=on-failure
 
 [Install]
