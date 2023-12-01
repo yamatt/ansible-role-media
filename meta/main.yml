@@ -11,5 +11,3 @@ galaxy_info:
         - focal
         - jammy
   galaxy_tags: []
-requirements:
-  - name: dev-sec.os-hardening
