@@ -42,7 +42,7 @@
         target: /media/ftp/eagle
 
 - name: Connect to web gateway network to communicate with nginx
-  community.general.docker_network:
+  community.docker.docker_network:
     name: "{{ webgateway_network_name }}"
     connected:
       - jellyfin
