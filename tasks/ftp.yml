@@ -33,6 +33,7 @@
   copy:
     src: ftp/rar2fs
     dest: /usr/bin/rar2fs
+    mode: '0700'
 
 - name: Create unrar service
   template:
