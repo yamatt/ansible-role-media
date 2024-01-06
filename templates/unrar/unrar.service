@@ -6,7 +6,7 @@ After=network-online.target
 [Service]
 Type=simple
 
-ExecStart=/usr/bin/rar2fs -f {{ ftp_mount_directory_path }} {{ ftp_rar_mount_directory_path }} -o allow_other
+ExecStart=/usr/bin/rar2fs -f {{ rclone_mount_ftp_directory_path }} {{ unrar_mount_directory_path }} -o allow_other
 
 StandardOutput=file:{{ unrar_log_file_path }}
 Restart=on-failure

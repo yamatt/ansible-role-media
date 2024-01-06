@@ -82,15 +82,12 @@ rclone_config_file_path: "{{ rclone_config_directory }}/rclone.conf"
 rclone_log_directory: /var/log/rclone
 rclone_log_file_path: "{{ rclone_log_directory }}/rclone.log"
 
-rclone_mount_directory_path: /mnt/media
+rclone_mount_media_directory_path: /mnt/media
+rclone_mount_ftp_directory_path: /mnt/ftp
 
-# ftp
+# unrar
 
-ftp_mount_directory_path: /mnt/ftp
-ftp_rar_mount_directory_path: /mnt/unrar
-
-ftp_log_directory: /var/log/ftp
-ftp_log_file_path: "{{ rclone_log_directory }}/ftp.log"
+unrar_mount_directory_path: /mnt/unrar
 unrar_log_file_path: "{{ rclone_log_directory }}/unrar.log"
 
 # jellyfin

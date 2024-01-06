@@ -1,0 +1,27 @@
+[Unit]
+Description=RClone Service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+KillMode=none
+Environment=GOMAXPROCS=2
+
+ExecStart=/usr/bin/rclone mount ftp: {{ rclone_mount_ftp_directory_path }} \
+  --config {{ rclone_config_file_path }} \
+  --ftp-no-check-certificate \
+  --use-mmap \
+  --dir-cache-time 1000h \
+  --poll-interval=15s \
+  --vfs-cache-mode writes \
+  --tpslimit 10 \
+  --read-only \
+  --verbose
+
+StandardOutput=file:{{ rclone_log_file_path }}
+ExecStop=/bin/fusermount -uz {{ rclone_mount_ftp_directory_path }}
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

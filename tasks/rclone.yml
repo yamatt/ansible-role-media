@@ -5,7 +5,8 @@
     state: directory
     recurse: yes
   loop:
-    - "{{ rclone_mount_directory_path }}"
+    - "{{ rclone_mount_media_directory_path }}"
+    - "{{ rclone_mount_ftp_directory_path }}"
     - "{{ rclone_config_directory }}"
     - "{{ rclone_log_directory }}"
 
@@ -19,14 +20,27 @@
     src: rclone/rclone.conf
     dest: "{{ rclone_config_file_path }}"
 
-- name: Create rclone service
+- name: Create rclone service for Media
   template:
-    src: rclone/rclone.service
+    src: rclone/rclone-media.service
     dest: /etc/systemd/system
 
-- name: Set rclone service to run
+- name: Set rclone media service to run
   service:
-    name: rclone
+    name: rclone-media
+    state: started
+    masked: no
+    enabled: yes
+  when: not testing | default('no') | bool
+
+- name: Create rclone service for FTP
+  template:
+    src: rclone/rclone-media.service
+    dest: /etc/systemd/system
+
+- name: Set rclone ftp service to run
+  service:
+    name: rclone-media
     state: started
     masked: no
     enabled: yes
