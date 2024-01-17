@@ -26,7 +26,7 @@
 # this build specifically
 
 - include_tasks: rclone.yml
-#- include_tasks: ftp.yml
+- include_tasks: unrar.yml
 
 - include_tasks: rebuild.yml
 
