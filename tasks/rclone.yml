@@ -35,12 +35,12 @@
 
 - name: Create rclone service for FTP
   template:
-    src: rclone/rclone-media.service
+    src: rclone/rclone-ftp.service
     dest: /etc/systemd/system
 
 - name: Set rclone ftp service to run
   service:
-    name: rclone-media
+    name: rclone-ftp
     state: started
     masked: no
     enabled: yes
