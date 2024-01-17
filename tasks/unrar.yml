@@ -9,6 +9,11 @@
 
 # This part re-mounts the ftp mount and uses rar2fs the ability to invisibly un-rar any files
 
+- name: Install ftp
+  apt:
+    name: libfuse2
+    state: present
+
 - name: RAR Extract
   copy:
     src: ftp/rar2fs
