@@ -6,7 +6,7 @@
     recurse: yes
   loop:
     - "{{ ftp_mount_directory_path }}"
-    - "{{ ftp_rar_mount_directory_path }}"
+    - "{{ unrar_mount_directory_path }}"
     - "{{ ftp_log_directory }}"
 
 - name: Install ftp
