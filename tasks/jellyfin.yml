@@ -33,7 +33,7 @@
     mounts:
       - type: bind
         read_only: yes
-        source: "{{ rclone_mount_directory_path }}"
+        source: "{{ rclone_mount_media_directory_path }}"
         target: /media/b2/matt
       - type: bind
         read_only: yes
